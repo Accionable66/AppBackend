@@ -8,6 +8,8 @@ CREATE TABLE `ciclo3`.`usuarios` (
   `usuario` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`cedula_usuario`));
 
+  
+
 CREATE TABLE `ciclo3`.`clientes` (
   `cedula_cliente` BIGINT(20) NOT NULL,
   `direccion_cliente` VARCHAR(255) NOT NULL,
