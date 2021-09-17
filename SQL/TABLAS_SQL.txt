@@ -1,94 +1,95 @@
-CREATE SCHEMA `ciclo3` ;
+CREATE SCHEMA tienda ;
 
-CREATE TABLE `ciclo3`.`usuarios` (
-  `cedula_usuario` BIGINT(20) NOT NULL,
-  `email_usuario` VARCHAR(255) NOT NULL,
-  `nombre_usuario` VARCHAR(255) NOT NULL,
-  `password` VARCHAR(255) NOT NULL,
-  `usuario` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`cedula_usuario`));
+CREATE TABLE tienda.usuarios (
+  cedula_usuario BIGINT(20) NOT NULL,
+  email_usuario VARCHAR(255) NOT NULL,
+  nombre_usuario VARCHAR(255) NOT NULL,
+  password VARCHAR(255)  NOT NULL ,
+  usuario VARCHAR(255)  NOT NULL ,
+  PRIMARY KEY (cedula_usuario));
 
-  
+CREATE TABLE tienda.clientes (
+  cedula_cliente BIGINT(20) NOT NULL,
+  direccion_cliente VARCHAR(255) NOT NULL,
+  email_cliente VARCHAR(255) NOT NULL,
+  nombre_cliente VARCHAR(255) NOT NULL,
+  telefono_cliente VARCHAR(255) NOT NULL,
+  PRIMARY KEY (cedula_cliente));
 
-CREATE TABLE `ciclo3`.`clientes` (
-  `cedula_cliente` BIGINT(20) NOT NULL,
-  `direccion_cliente` VARCHAR(255) NOT NULL,
-  `email_cliente` VARCHAR(255) NOT NULL,
-  `nombre_cliente` VARCHAR(255) NOT NULL,
-  `telefono_cliente` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`cedula_cliente`));
-
-CREATE TABLE `ciclo3`.`ventas` (
-  `codigo_venta` BIGINT(20) NOT NULL,
-  `cedula_cliente` BIGINT(20) NOT NULL,
-  `cuedula_usuario` BIGINT(20) NOT NULL,
-  `ivaventa` DOUBLE NOT NULL,
-  `total_venta` DOUBLE NOT NULL,
-  `valor_venta` DOUBLE NOT NULL,
-  PRIMARY KEY (`codigo_venta`),
-  INDEX `cedula_cliente_idx` (`cedula_cliente` ASC) VISIBLE,
-  INDEX `cedula_usuario_idx` (`cuedula_usuario` ASC) VISIBLE,
-  CONSTRAINT `cedula_cliente`
-    FOREIGN KEY (`cedula_cliente`)
-    REFERENCES `ciclo3`.`clientes` (`cedula_cliente`)
+CREATE TABLE tienda.ventas (
+  codigo_venta BIGINT(20) NOT NULL,
+  cedula_cliente BIGINT(20) NOT NULL,
+  cuedula_usuario BIGINT(20) NOT NULL,
+  ivaventa DOUBLE NOT NULL,
+  total_venta DOUBLE NOT NULL,
+  valor_venta DOUBLE NOT NULL,
+  PRIMARY KEY (codigo_venta),
+  INDEX cedula_cliente_idx (cedula_cliente ASC) VISIBLE,
+  INDEX cedula_usuario_idx (cuedula_usuario ASC) VISIBLE,
+  CONSTRAINT cedula_cliente
+    FOREIGN KEY (cedula_cliente)
+    REFERENCES tienda.clientes (cedula_cliente)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `cedula_usuario`
-    FOREIGN KEY (`cuedula_usuario`)
-    REFERENCES `ciclo3`.`usuarios` (`cedula_usuario`)
+  CONSTRAINT cedula_usuario
+    FOREIGN KEY (cuedula_usuario)
+    REFERENCES tienda.usuarios (cedula_usuario)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-CREATE TABLE `ciclo3`.`detalle_ventas` (
-  `codigo_detalle_venta` BIGINT(20) NOT NULL,
-  `cantidad_producto` INT(11) NOT NULL,
-  `codigo_producto` BIGINT(20) NOT NULL,
-  `codigo_venta` BIGINT(20) NOT NULL,
-  `valor_total` DOUBLE NOT NULL,
-  `valor_venta` DOUBLE NOT NULL,
-  `valoriva` DOUBLE NOT NULL,
-  PRIMARY KEY (`codigo_detalle_venta`),
-  INDEX `codigo_venta_idx` (`codigo_venta` ASC) VISIBLE,
-  CONSTRAINT `codigo_venta`
-    FOREIGN KEY (`codigo_venta`)
-    REFERENCES `ciclo3`.`ventas` (`codigo_venta`)
+CREATE TABLE tienda.detalle_ventas (
+  codigo_detalle_venta BIGINT(20) NOT NULL,
+  cantidad_producto INT(11) NOT NULL,
+  codigo_producto BIGINT(20) NOT NULL,
+  codigo_venta BIGINT(20) NOT NULL,
+  valor_total DOUBLE NOT NULL,
+  valor_venta DOUBLE NOT NULL,
+  valoriva DOUBLE NOT NULL,
+  PRIMARY KEY (codigo_detalle_venta),
+  INDEX codigo_venta_idx (codigo_venta ASC) VISIBLE,
+  CONSTRAINT codigo_venta
+    FOREIGN KEY (codigo_venta)
+    REFERENCES tienda.ventas (codigo_venta)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-CREATE TABLE `ciclo3`.`productos` (
-  `codigo_producto` BIGINT(20) NOT NULL,
-  `ivacompra` DOUBLE NOT NULL,
-  `nitproveedor` BIGINT(20) NOT NULL,
-  `nombre_producto` VARCHAR(255) NOT NULL,
-  `precio_compra` DOUBLE NOT NULL,
-  `precio_venta` DOUBLE NOT NULL,
-  PRIMARY KEY (`codigo_producto`));
+CREATE TABLE tienda.productos (
+  codigo_producto BIGINT(20) NOT NULL,
+  ivacompra DOUBLE NOT NULL,
+  nitproveedor BIGINT(20) NOT NULL,
+  nombre_producto VARCHAR(255) NOT NULL,
+  precio_compra DOUBLE NOT NULL,
+  precio_venta DOUBLE NOT NULL,
+  PRIMARY KEY (codigo_producto));
 
-ALTER TABLE `ciclo3`.`detalle_ventas` 
-ADD INDEX `codigo_producto_idx` (`codigo_producto` ASC) VISIBLE;
+ALTER TABLE tienda.detalle_ventas 
+ADD INDEX codigo_producto_idx (codigo_producto ASC) VISIBLE;
 ;
-ALTER TABLE `ciclo3`.`detalle_ventas` 
-ADD CONSTRAINT `codigo_producto`
-  FOREIGN KEY (`codigo_producto`)
-  REFERENCES `ciclo3`.`productos` (`codigo_producto`)
+ALTER TABLE tienda.detalle_ventas
+ADD CONSTRAINT codigo_producto
+  FOREIGN KEY (codigo_producto)
+  REFERENCES tienda.productos (codigo_producto)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
 
-CREATE TABLE `ciclo3`.`proveedores` (
-  `nitproveedor` BIGINT(20) NOT NULL,
-  `ciudad_proveedor` VARCHAR(255) NOT NULL,
-  `direccion_proveedor` VARCHAR(255) NOT NULL,
-  `nombre_proveedor` VARCHAR(255) NOT NULL,
-  `telefono_proveedor` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`nitproveedor`));
+CREATE TABLE tienda.proveedores (
+  nitproveedor BIGINT(20) NOT NULL,
+  ciudad_proveedor VARCHAR(255) NOT NULL,
+  direccion_proveedor VARCHAR(255) NOT NULL,
+  nombre_proveedor VARCHAR(255) NOT NULL,
+  telefono_proveedor VARCHAR(255) NOT NULL,
+  PRIMARY KEY (nitproveedor));
 
-ALTER TABLE `ciclo3`.`productos` 
-ADD INDEX `nitproveedor_idx` (`nitproveedor` ASC) VISIBLE;
+ALTER TABLE tienda.productos 
+ADD INDEX nitproveedor_idx (nitproveedor ASC) VISIBLE;
 ;
-ALTER TABLE `ciclo3`.`productos` 
-ADD CONSTRAINT `nitproveedor`
-  FOREIGN KEY (`nitproveedor`)
-  REFERENCES `ciclo3`.`proveedores` (`nitproveedor`)
+ALTER TABLE tienda.productos 
+ADD CONSTRAINT nitproveedor
+  FOREIGN KEY (nitproveedor)
+  REFERENCES tienda.proveedores (nitproveedor)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
+  
+INSERT INTO tienda.usuarios (cedula_usuario,email_usuario,nombre_usuario,password,usuario)
+ VALUES(1,"inicial","inicial","admin123456","admininicial");  
 
