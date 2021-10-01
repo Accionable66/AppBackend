@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="navegacion.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <title>Usuarios</title>
+        <title>Clientes</title>
     </head>
 
    <body>
@@ -60,61 +60,37 @@
     </header>     
         <div class="container-fluid" style="padding: 10%;">
             <div class="content">
-<<<<<<< HEAD
-                <form action = "UsuarioActualiza.jsp" method = "GET">
-                    <h1><strong>Bienvenido al área de usuarios</strong></h1>
-=======
                 <form action = "UsuarioActualiza.jsp" method = "POST">
-                    <h1><strong>Bienvenido al área de Usuarios</strong></h1>
->>>>>>> branch 'nueva' of https://github.com/Accionable66/AppBackend.git
+                    <h1><strong>Bienvenido al área de Clientes</strong></h1>
                     <div class="user-details">
                         <div class = "input-box">
                             <span class = "details">C&eacute;dula</span>
-                            <input type="text" name = "cedula" placeholder="Ingrese C&eacute;dula" required>
+                            <input type="text" name = "cedula" placeholder="Ingrese N&uacute;mero de C&eacute;dula" required>
                         </div>
                         <div class = "input-box">
-                            <span class = "details">Usuario</span>
-<<<<<<< HEAD
-                            <input type="text" name = "usuario" placeholder="Ingrese usuario" >
-=======
-                            <input type="text" name = "usuario" placeholder="Ingrese Usuario" required>
->>>>>>> branch 'nueva' of https://github.com/Accionable66/AppBackend.git
+                            <span class = "details">Tel&eacute;fono</span>
+                            <input type="text" name = "telefono" placeholder="Ingrese Tel&eacute;fono" required>
                         </div>  
                         <div class = "input-box">
-<<<<<<< HEAD
-                            <span class = "details">Correo electr&oacute;nico</span>
-                            <input type="text" name = "correo" placeholder="Ingrese correo" >
-=======
-                            <span class = "details">Correo Electr&oacute;nico</span>
-                            <input type="text" name = "correo" placeholder="Ingrese Correo Electr&oacute;nico" required>
->>>>>>> branch 'nueva' of https://github.com/Accionable66/AppBackend.git
-                        </div>
-                        <div class = "input-box">
-                            <span class = "details">Contrase&ntilde;a</span>
-<<<<<<< HEAD
-                            <input type="password" name = "contrasena" placeholder="Ingrese contrase&ntilde;a" >
-=======
-                            <input type="password" name = "contrasena" placeholder="Ingrese Contrase&ntilde;a" required>
->>>>>>> branch 'nueva' of https://github.com/Accionable66/AppBackend.git
-                        </div>
-                        <div class = "input-box">
-<<<<<<< HEAD
-                            <span class = "details">Nombre completo</span>
-                            <input type="text" name = "nombre" name = "nombre" placeholder="Ingrese nombre" >
-=======
                             <span class = "details">Nombre Completo</span>
-                            <input type="text" name = "nombre" name = "nombre" placeholder="Ingrese Nombre Completo" required>
->>>>>>> branch 'nueva' of https://github.com/Accionable66/AppBackend.git
+                            <input type="text" name = "nombre" placeholder="Ingrese Nombre Completo" required>
+                        </div>
+                        <div class = "input-box">
+                            <span class = "details">Correo electr&oacute;nico</span>
+                            <input type="text" name = "correo" placeholder="Ingrese Correo Electr&oacute;nico" required>
+                        </div>
+                        <div class = "input-box">
+                            <span class = "details">Direcci&oacute;n</span>
+                            <input type="text" name = "dirección" name = "nombre" placeholder="Ingrese Direcci&oacute;n" required>
                         </div>
                     </div>
                     <br>
                     <div class = "button" style="margin-left: 300px; ;">
-                        <input style="margin-right: 30px; margin-left: 40px;" type="submit" name="boton" value="Consultar" />
-                        <input style="margin-right: 30px; margin-left: 40px;" type="submit" name="boton" value="Crear" />
-                        <input style="margin-right: 30px; margin-left: 40px;" type="submit" name="boton" value="Actualizar" />
-                        <input style="margin-right: 30px; margin-left: 40px;" type="submit" name="boton" value="Borrar" />
+                        <input style="margin-right: 30px; margin-left: 40px;" type="button" name="consultar" value="Consultar" />
+                        <input style="margin-right: 30px; margin-left: 40px;" type="button" name="crear" value="Crear" />
+                        <input style="margin-right: 30px; margin-left: 40px;" type="submit" name="actualizar" value="Actualizar" />
+                        <input style="margin-right: 30px; margin-left: 40px;" type="reset" name="borrar" value="Borrar" />
                     </div>
-                    
                 </form>
             </div>
         </div>
