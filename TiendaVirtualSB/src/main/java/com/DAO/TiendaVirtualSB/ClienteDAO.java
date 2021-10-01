@@ -49,7 +49,7 @@ public class ClienteDAO
   Conexion conex= new Conexion();
   try {
    Statement estatuto = conex.getConnection().createStatement();
-   estatuto.executeUpdate("UPDATE clientes SET email_usuario='"+persona.getemailUsuario()+"',nombre_usuario='"+persona.getnombreUsuario()+"',password='"+persona.getpassword()+"' WHERE cedula_usuario='"+persona.getcedulaUsuario()+"'");
+   estatuto.executeUpdate("UPDATE usuarios SET email_usuario='"+persona.getemailUsuario()+"',nombre_usuario='"+persona.getnombreUsuario()+"',password='"+persona.getpassword()+"' WHERE cedula_usuario='"+persona.getcedulaUsuario()+"'");
    //JOptionPane.showMessageDialog(null, "Se ha registrado Exitosamente","Información",JOptionPane.INFORMATION_MESSAGE);
    estatuto.close();
    conex.desconectar();
@@ -65,7 +65,7 @@ public class ClienteDAO
   Conexion conex= new Conexion();
   try {
    Statement estatuto = conex.getConnection().createStatement();
-   estatuto.executeUpdate("DELETE FROM usuarios WHERE nombre_usuario='"+persona.getusuario()+"'");
+   estatuto.executeUpdate("DELETE FROM usuarios WHERE cedula_usuario='"+persona.getcedulaUsuario()+"'");
    //JOptionPane.showMessageDialog(null, "Se ha registrado Exitosamente","Información",JOptionPane.INFORMATION_MESSAGE);
    estatuto.close();
    conex.desconectar();
@@ -83,13 +83,13 @@ public class ClienteDAO
  * @param documento 
  * @return
  */
-public boolean consultarPersona(String nombre) {
+public boolean consultarPersona(Integer cedula) {
   ArrayList< ClienteVO> miCliente = new ArrayList< ClienteVO>();
   Conexion conex= new Conexion();
     
   try {
-   PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT * FROM usuarios where usuario = ? ");
-   consulta.setString(1, nombre);
+   PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT * FROM usuarios where cedula_usuario = ? ");
+   consulta.setInt(1, cedula);
    ResultSet res = consulta.executeQuery();
    
   if(res.next()){
@@ -99,13 +99,21 @@ public boolean consultarPersona(String nombre) {
     persona.setnombreUsuario(res.getString("nombre_usuario"));
     persona.setpassword(res.getString("password"));
     persona.setusuario(res.getString("usuario"));
- 
+    System.out.println("Usuario okk");
     miCliente.add(persona);
-          }
-          res.close();
-          consulta.close();
-          conex.desconectar();
+    res.close();
+    consulta.close();
+    conex.desconectar();
     return true;
+          }
+  else {
+	  res.close();
+	  consulta.close();
+	  conex.desconectar();
+	return false;
+  }
+   
+    
    
   } catch (Exception e) {
    //JOptionPane.showMessageDialog(null, "no se pudo consultar la Persona\n"+e);
@@ -124,7 +132,7 @@ public ArrayList< ClienteVO> listaDePersonas() {
   Conexion conex= new Conexion();
     
   try {
-   PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT * FROM clientes");
+   PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT * FROM usuarios ");
    ResultSet res = consulta.executeQuery();
    while(res.next()){
     ClienteVO persona= new ClienteVO();
@@ -179,5 +187,33 @@ public boolean loginDePersonas(String usuario, String password) {
 	  }
 	  
 	  return false;
+	 }
+public ClienteVO listaDePersonas1(int cedula) {
+	  ClienteVO miCliente = new ClienteVO();
+	  Conexion conex= new Conexion();
+	    
+	  try {
+	   PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT * FROM usuarios WHERE cedula_usuario = ? ");
+	   consulta.setInt(1, cedula);
+	   ResultSet res = consulta.executeQuery();
+	   if(res.next()){
+	    ClienteVO persona= new ClienteVO();
+	    persona.setcedulaUsuario(Integer.parseInt(res.getString("cedula_usuario")));
+	    persona.setemailUsuario(res.getString("email_usuario"));
+	    persona.setnombreUsuario(res.getString("nombre_usuario"));
+	    persona.setpassword(res.getString("password"));
+	    persona.setusuario(res.getString("usuario"));
+	    System.out.println(""+res.getString("cedula_usuario")+","+res.getString("email_usuario")+" , "+res.getString("nombre_usuario")+"");
+	    System.out.println("Usuario paso");
+	    miCliente=persona;
+	          }
+	          res.close();
+	          consulta.close();
+	          conex.desconectar();
+	   
+	  } catch (Exception e) {
+	   //JOptionPane.showMessageDialog(null, "no se pudo consultar la Persona\n"+e);
+	  }
+	  return miCliente;
 	 }
 }

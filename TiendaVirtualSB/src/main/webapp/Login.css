@@ -12,7 +12,7 @@ body{
 .modal-content{
     background-color: #000000;
     opacity: .85;
-    padding: 0 20px;
+    padding: 20px 20px 20px;
     box-shadow: 0px 0px 3px #848484;
 }
 .user-img{
@@ -51,7 +51,7 @@ body{
     content: "\f023";
 }
 
-button{
+.botoningresar{
     width: 60%;
     margin: 5px 0 25px;
 }

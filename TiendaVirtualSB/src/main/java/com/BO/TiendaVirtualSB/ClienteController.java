@@ -51,9 +51,9 @@ public class ClienteController {
 	 */
 	
 	@RequestMapping("/consultarPersona")
-	public boolean consultarPersona(String nombre) {
+	public boolean consultarPersona(Integer cedula) {
 		ClienteDAO Dao=new ClienteDAO(); 
-	return 	Dao.consultarPersona(nombre);
+	return 	Dao.consultarPersona(cedula);
 		
 	}
 
@@ -83,6 +83,18 @@ public class ClienteController {
 			
 		return Dao.loginDePersonas(usuario,password);
 		
+		
+	}
+	
+	/**
+	 * permite consultar la lista de Clientes
+	 * @return
+	 */
+	@RequestMapping("/listarPersonas1")
+	public ClienteVO listaDePersonas1(int cedula) {
+		ClienteDAO Dao=new ClienteDAO(); 
+			
+		return Dao.listaDePersonas1(cedula);
 		
 	}
 

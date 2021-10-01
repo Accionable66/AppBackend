@@ -7,7 +7,7 @@ public class ClienteVO {
 	 private String nombreUsuario;
 	 private String password;
 	 private String usuario;
-	 private Integer flag;
+	 
 	 
 	 /**
 	  * @return the cedulaUsuario
@@ -76,18 +76,7 @@ public class ClienteVO {
 	 public void setusuario(String usuario) {
 	  this.usuario = usuario;
 	 }
-	 /**
-	  * @return the flag
-	  */
-	 public Integer getflag() {
-	  return flag;
-	 }
-	 /**
-	  * @param usuario the flag to set
-	  */
-	 public void setflag(Integer flag) {
-	  this.flag = flag;
-	 }
+	 
 	 
 
 }

@@ -9,29 +9,31 @@
 <% 
     ClienteController cc=new ClienteController();
     ClienteVO cli=new ClienteVO();
-    int id=Integer.parseInt(request.getParameter("idcliente"));
-    cli.setnombreUsuario(request.getParameter("nombre"));
+    int id=Integer.parseInt(request.getParameter("cedula"));
+    cli.setnombreUsuario(request.getParameter("usuario"));
     cli.setcedulaUsuario(id);    
-    cli.setemailUsuario(request.getParameter("apellido"));
+    cli.setemailUsuario(request.getParameter("correo"));
     cc.eliminarPersona(cli);
+    
+    
 %>
 <head>
 <title>Page Redirection</title>
 </head>
 <body>
-    <h1>Using GET Method to Read Form Data</h1>
+    <h1>Usuario ha sido borrado</h1>
     <ul>
         <li><p>
                 <b>First Name:</b>
-                <%= request.getParameter("idcliente")%>
+                <%= request.getParameter("cedula")%>
             </p></li>
         <li><p>
                 <b>Last Name:</b>
-                <%= request.getParameter("nombre")%>
+                <%= request.getParameter("correo")%>
             </p></li>
         <li><p>
                 <b>Last Name:</b>
-                <%= request.getParameter("apellido")%>
+                <%= request.getParameter("usuario")%>
             </p></li>
     </ul>
 </body>
