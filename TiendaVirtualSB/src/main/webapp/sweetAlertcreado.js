@@ -1,6 +1,6 @@
 Swal.fire({
-    title:"Usuario creado",
-    icon:"success",
+    title:"Faltan Datos",
+    icon:"error",
     confirmButtonText:"Continuar",
     allowOutsideClick: false,
 })

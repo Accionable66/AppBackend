@@ -7,6 +7,10 @@
 %>
 <html>
 
+<style>
+<%@ include file = "style.css" %>
+</style>
+
 <% 
 
 
@@ -26,40 +30,23 @@
     	    cli.setpassword("pas");
     	    cli.setusuario("usu");
     	    cc.eliminarPersona(cli);
-    		response.sendRedirect("UsuarioActualiza.html");
-    		System.out.println("si");
+    		response.sendRedirect("navegacion.html");
+    		
     		
     	} else{
-    		response.sendRedirect("UsuarioActualiza.html");
+    		response.sendRedirect("navegacion.html");
     	}
     } else {
-    	response.sendRedirect("Loginerror.html");
-    	String mensaje="error";
     	
-    	request.getSession().setAttribute("correo", mensaje);
+    	out.println("<script src='https://code.jquery.com/jquery-3.3.1.slim.min.js' integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo' crossorigin='anonymous'></script>");
+    	out.println("<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>");
+        out.println("<script language=JavaScript>");
+        out.println("$(document).ready(function(){");
+        out.println("swal.fire({title: 'Usuario Inexistente', icon: 'error'}).then(function(){ window.location = 'Login.html';});");
+        out.println("});");
+        out.println("</script>"); 
     }
     	
 %>
-<head>
-<title>Page Redirection</title>
-</head>
-<body>
-    <h1>Using GET Method to Read Form Data</h1>
-    <ul>
-        <li><p>
-                <b>First Name:</b>
-                //<%= request.getParameter("nombre")%>
-                
-            </p></li>
-        <li><p>
-                <b>Last Name:</b>
-                <%= request.getParameter("nombre")%>
-            </p></li>
-        <li><p>
-                <b>Last Name:</b>
-                <%= request.getParameter("apellido")%>
-            </p></li>
-            
-    </ul>
-</body>
+
 </html>

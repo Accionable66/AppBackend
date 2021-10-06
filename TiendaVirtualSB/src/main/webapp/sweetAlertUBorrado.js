@@ -1,6 +1,6 @@
 Swal.fire({
-    title:"Datos del Usuario Borrados",
-    icon:"success",
+    title:"Faltan Datos",
+    icon:"error",
     confirmButtonText:"Continuar",
     allowOutsideClick: false,
 })

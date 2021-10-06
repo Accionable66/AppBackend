@@ -2,3 +2,7 @@
     background-color:#252850;
 
 }
+
+.custom-file-input ~ .custom-file-label::after {
+    content: "Seleccionar";
+}
